@@ -1,4 +1,7 @@
 # Veritas: A Grounded AI Agent for PDFs
+[![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC_BY--NC--SA_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
+[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
+[![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-brightgreen.svg)](https://github.com/Diegolinop/veritas/pulls)
 
 Veritas is a local application that allows you to interact with an AI agent that answers questions based **solely** on the content of the PDF documents you provide. By grounding the AI's responses in your uploaded text, Veritas minimizes hallucinations and ensures accurate, context-specific answers. All processing occurs on your local machine, guaranteeing complete data privacy.
 
