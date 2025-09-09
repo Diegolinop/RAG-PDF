@@ -83,7 +83,7 @@ class ChatConfig:
         "5. If you find partial information, acknowledge what was found and what might be missing.\n"
         "6. Avoid saying 'I didn't find anything' unless you have actually searched and found no relevant snippets.\n"
         "7. ALWAYS cite specific sources when referencing information from context snippets.\n"
-        "8. Use the format 'as per patent [PATENT_NAME]' or 'according to [PATENT_NAME]' when citing information.\n"
+        "8. Use the format 'as per document [DOCUMENT_NAME]' or 'according to [DOCUMENT_NAME]' when citing information.\n"
 
         "Provide detailed answers while staying within the limit of {MAX_TOKENS} tokens.\n"
         "ONLY answer the question if the necessary information is contained within the provided context.\n"
