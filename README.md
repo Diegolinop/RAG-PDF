@@ -1,16 +1,16 @@
 # Veritas: A Grounded AI Agent for PDFs
 [![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC_BY--NC--SA_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
-[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 [![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-brightgreen.svg)](https://github.com/Diegolinop/veritas/pulls)
-
+[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
+[![Read in Portuguese](https://img.shields.io/badge/Leia%20em-Portugu%C3%AAs%20(BR)-blue)](README.pt-br.md)
 Veritas is a local application that allows you to interact with an AI agent that answers questions based **solely** on the content of the PDF documents you provide. By grounding the AI's responses in your uploaded text, Veritas minimizes hallucinations and ensures accurate, context-specific answers. All processing occurs on your local machine, guaranteeing complete data privacy.
 
 ## Features
 
-- **🔒 100% Local & Private**: Everything runs on your machine. Your documents and conversations never leave your computer.
-- **📄 PDF-Powered Context**: The AI agent is constrained to your provided PDFs, ensuring verifiable and relevant answers.
-- **⚡ Efficient Retrieval**: Documents are parsed, vectorized, and cached for fast and accurate semantic search.
-- **🤖 LM Studio Integration**: Leverages local models served via LM Studio for both language generation and embeddings, offering flexibility in model choice.
+- **100% Local & Private**: Everything runs on your machine. Your documents and conversations never leave your computer.
+- **PDF-Powered Context**: The AI agent is constrained to your provided PDFs, ensuring verifiable and relevant answers.
+- **Efficient Retrieval**: Documents are parsed, vectorized, and cached for fast and accurate semantic search.
+- **LM Studio Integration**: Leverages local models served via LM Studio for both language generation and embeddings, offering flexibility in model choice.
 
 
 ## Prerequisites
@@ -62,7 +62,7 @@ Before you begin, ensure you have the following installed and configured:
 
 2.  **Launch Veritas**:
     *   Double-click the `app.bat` file.
-    *   Wait for the script to process your PDFs. This may take a moment depending on the number and size of the documents.
+    *   Wait for the script to process your PDFs. This step reads, chunks, and creates vector embeddings for all documents in the documents/ folder. **The process may take a moment depending on the number and size of the documents.**
     *   Once complete, your default browser should open automatically to `http://127.0.0.1:8888`.
 
 
