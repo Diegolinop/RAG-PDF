@@ -89,7 +89,7 @@ Before you begin, ensure you have the following installed and configured:
 
 This project is licensed under the **Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License** (CC BY-NC-SA 4.0). This means you are free to share and adapt the material for non-commercial purposes, as long as you give appropriate credit and license any new creations under the identical terms.
 
-See the [LICENSE](LICENSE) file for full details.
+See the [LICENSE](LICENSE.md) file for full details.
 
 
 ## Acknowledgments

@@ -84,7 +84,7 @@ Antes de começar, certifique-se de ter o seguinte instalado e configurado:
 
 Este projeto está licenciado sob a **Licença Internacional Creative Commons Attribution-NonCommercial-ShareAlike 4.0** (CC BY-NC-SA 4.0). Isso significa que você é livre para compartilhar e adaptar o material para fins não comerciais, desde que dê o crédito apropriado e licencie quaisquer novas criações sob os mesmos termos.
 
-Veja o arquivo [LICENSE](LICENSE) para detalhes completos.
+Veja o arquivo [LICENSE](LICENSE.md) para detalhes completos.
 
 ## Agradecimentos
 
