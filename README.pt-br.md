@@ -1,93 +1,84 @@
-# Veritas: Um Agente de IA Baseado em PDFs
+# RAG-PDF Chat
+*Um chatbot local e privado que responde perguntas usando seus documentos PDF como única fonte de conhecimento.*
+
 [![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC_BY--NC--SA_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
-[![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-brightgreen.svg)](https://github.com/Diegolinop/veritas/pulls)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
-[![Read in Portuguese](https://img.shields.io/badge/Leia%20em-Portugu%C3%AAs%20(BR)-blue)](README.pt-br.md)
+[![Leia em Português](https://img.shields.io/badge/Read%20in-English-blue)](README.md)
 
-Veritas é uma aplicação local que permite que você interaja com um agente de IA que responde perguntas **exclusivamente** com base no conteúdo dos documentos PDF que você fornecer. Ao fundamentar as respostas da IA no texto que você fez upload, o Veritas minimiza "alucinações" e garante respostas precisas e específicas ao contexto. Todo o processamento ocorre na sua máquina local, garantindo privacidade total dos dados.
-
-## Funcionalidades
-
-- **100% Local e Privado**: Tudo é executado na sua máquina. Seus documentos e conversas nunca saem do seu computador.
-- **Contexto Alimentado por PDFs**: O agente de IA é restrito aos PDFs fornecidos por você, garantindo respostas verificáveis e relevantes.
-- **Recuperação Eficiente**: Os documentos são analisados, vetorizados e armazenados em cache para uma busca semântica rápida e precisa.
-- **Integração com LM Studio**: Utiliza modelos locais servidos via LM Studio para geração de linguagem e embeddings, oferecendo flexibilidade na escolha do modelo.
+Esta ferramenta de Geração Aumentada por Recuperação (Retrieval-Augmented Generation) é uma aplicação local que permite interagir com um agente de IA que responde perguntas baseando-se **exclusivamente** no conteúdo dos documentos PDF que você fornecer. Ao fundamentar as respostas da IA no texto que você enviou, a ferramenta minimiza alucinações e garante respostas precisas e específicas ao contexto. Todo o processamento ocorre em seu computador local, garantindo total privacidade dos dados.
 
 ## Pré-requisitos
 
 Antes de começar, certifique-se de ter o seguinte instalado e configurado:
 
-1.  **Python 3.8 ou superior**
-    *   Faça o download em [python.org](https://www.python.org/downloads/).
-    *   Verifique a instalação: Abra um prompt de comando e execute `python --version`.
+1.  **Sistema Operacional Windows**
+    *   Esta aplicação requer o LM Studio, que atualmente está disponível apenas para Windows
 
-2.  **LM Studio**
-    *   Faça o download e instale a partir do [site oficial do LM Studio](https://lmstudio.ai/).
-    *   **Configurações Obrigatórias**: Após a instalação, abra o LM Studio e habilite o **Modo Desenvolvedor (Developer Mode)** ou **Modo Usuário Avançado (Power User Mode)** nas Configurações (Settings).
+2.  **Python 3.8 ou superior**
+    *   Faça o download em [python.org](https://www.python.org/downloads/)
+    *   Verifique a instalação: Abra um prompt de comando e execute `python --version`
 
-## Instalação & Setup
+3.  **LM Studio**
+    *   Faça o download e instale a partir do [site oficial do LM Studio](https://lmstudio.ai/)
+    *   **Configurações Necessárias**: Após a instalação, abra o LM Studio e habilite o **Modo Desenvolvedor (Developer Mode)** ou **Modo Usuário Avançado (Power User Mode)** nas configurações.
 
-### Passo 1: Baixe e Configure Modelos no LM Studio
+## Instalação & Configuração
 
-1.  **Inicie o LM Studio**.
+### Passo 1: Baixar e Configurar Modelos no LM Studio
+
+1.  **Inicie o LM Studio**
 2.  **Baixe os Modelos**:
-    *   Na aba "Search" (Busca), encontre e baixe um **Modelo de Linguagem (LLM)** adequado (por exemplo, uma variante de Llama 2 ou Mistral).
-    *   Encontre e baixe um **Modelo de Embeddings** (por exemplo, `all-MiniLM-L6-v2` ou `bge-small-en-v1.5` são escolhas comuns).
-3.  **Carregue os Modelos para o Servidor**:
-    *   Vá para a aba **"Local Server"** (Servidor Local).
-    *   Em **"LLM"**, selecione o modelo de linguagem que você baixou.
-    *   Em **"Embeddings"**, selecione o modelo de embeddings que você baixou.
-    *   **Não inicie o servidor ainda.**
+    *   Na aba "Search" (Busca), encontre e baixe um **Modelo de Linguagem (LLM)** adequado (por exemplo, uma variante do Llama 3 ou Mistral)
+    *   Baixe também um **Modelo de Embeddings** (por exemplo, `Qwen3-Embedding-0.6B` ou `embeddinggemma-300m` são escolhas comuns)
+3.  **Inicie o Servidor Local**:
+    *   Vá até a aba **"Developer"** (Desenvolvedor)
+    *   Ative o botão do servidor local ou use (Ctrl + .)
 
-### Passo 2: Configure o Ambiente do Veritas
+### Passo 2: Configurar o Ambiente RAG
 
-1.  **Execute o script de setup**:
-    *   Clique duas vezes no arquivo `setup.bat` no diretório do projeto Veritas.
+1.  **Execute o script de configuração**:
+    *   Dê um duplo clique no arquivo `setup.bat` no diretório do projeto `rag-pdf`
     *   Este script irá:
-        *   Criar um ambiente virtual do Python.
-        *   Instalar todas as dependências necessárias (por exemplo, `fastapi`, `scikit-learn`, `pypdf`).
-        *   Criar os diretórios necessários (como `documents/`).
+        *   Criar um ambiente virtual Python
+        *   Instalar todas as dependências necessárias (ex.: `fastapi`, `scikit-learn`, `pypdf`)
+        *   Criar os diretórios necessários (como `documents/`)
+    *   Alternativamente, você pode criar um ambiente virtual manualmente e instalar as dependências a partir do arquivo `requirements.txt`
 
-### Passo 3: Prepare Seus Documentos
+### Passo 3: Preparar Seus Documentos
 
-1.  Coloque os arquivos PDF com os quais você deseja interagar no diretório `documents/` criado pelo script de setup.
+1.  Coloque os arquivos PDF com os quais você deseja interagir dentro do diretório `documents/` criado pelo script de configuração
 
-### Passo 4: Inicie a Aplicação
+### Passo 4: Iniciar a Aplicação
 
 1.  **Inicie o Servidor do LM Studio**:
-    *   Volte para a aba **"Local Server"** no LM Studio.
-    *   Certifique-se de que os modelos corretos estão selecionados.
-    *   Clique no botão **"Start Server"** (Iniciar Servidor). Anote o URL do servidor (normalmente `http://localhost:1234/v1`).
+    *   Volte para a aba **"Developer"** no LM Studio
+    *   Na seção **"Select a model to load"** (Selecione um modelo para carregar), selecione os modelos que você baixou
+    *   Certifique-se de que o status do servidor está como **"running"** (executando). Se não estiver, inicie o servidor seguindo as instruções do Passo 1.3 ("Inicie o Servidor Local").
 
-2.  **Inicie o Veritas**:
-    *   Clique duas vezes no arquivo `app.bat`.
-    *   Aguarde o script processar seus PDFs. Esta etapa lê, divide e cria embeddings vetoriais para todos os documentos na pasta `documents/`. **O processo pode levar um tempo dependendo do número e do tamanho dos documentos.**
-    *   Uma vez completo, seu navegador padrão deve abrir automaticamente em `http://127.0.0.1:8888`.
+2.  **Inicie a aplicação**:
+    *   Dê um duplo clique no arquivo `app.bat`
+    *   Aguarde o script processar seus PDFs. Esta etapa lê, segmenta (chunking) e cria vetores de embedding (vector embeddings) para todos os documentos na pasta `documents/`. **O processo pode levar um tempo dependendo da quantidade e do tamanho dos documentos**
+    *   Uma vez completo, seu navegador padrão deve abrir automaticamente em `http://127.0.0.1:8888`
+    *   Talvez você precise atualizar a página se ela abrir antes do seu servidor estar pronto
 
-## Uso
+## Como Usar
 
-1.  **Interface de Chat**: A interface web será aberta. Digite sua pergunta na caixa de entrada e pressione Enter.
-2.  **Revise as Respostas**: O agente de IA processará sua consulta, pesquisará no conteúdo vetorizado dos seus PDFs e gerará uma resposta baseada exclusivamente naquele conteúdo.
-3.  **Resetar**: Use o botão "Reset Chat" (Resetar Chat) para limpar o histórico da conversa atual.
+1.  **Interface de Chat**: A interface web será aberta. Digite sua pergunta na caixa de entrada e pressione Enter
+2.  **Revisar Respostas**: O agente de IA processará sua consulta, buscará no conteúdo vectorizado dos seus PDFs e gerará uma resposta baseada apenas naquele conteúdo
+3.  **Resetar**: Use o botão "Reset Chat" (Resetar Chat) para limpar o histórico da conversa atual
 
 ## Solução de Problemas
 
 | Problema | Causa Provável | Solução |
 | :--- | :--- | :--- |
-| Falha no `setup.bat`. | Python não instalado ou não está no PATH. | Reinstale o Python, certificando-se de marcar "Adicionar Python ao PATH" durante a instalação. |
-| Erro de conexão com o servidor do LM Studio. | O servidor do LM Studio não está em execução. | Vá para a aba "Local Server" no LM Studio e clique em "Start Server". |
-| | Modelo incorreto carregado. | Certifique-se de que um modelo LLM e um modelo de Embeddings estão selecionados e carregados na aba "Local Server". |
-| O aplicativo falha ao processar PDFs. | Não há PDFs na pasta `documents/`. | Adicione arquivos PDF ao diretório `documents/` e reinicie o `app.bat`. |
+| `setup.bat` falha. | Python não instalado ou não está no PATH. | Reinstale o Python, certificando-se de marcar "Adicionar Python ao PATH" durante a instalação. |
+| Erro de conexão com o servidor do LM Studio. | O servidor do LM Studio não está em execução. | Vá para a aba "Local Server" (Servidor Local) no LM Studio e clique em "Start Server" (Iniciar Servidor). |
+| | Modelo incorreto carregado. | Certifique-se de que tanto um LLM quanto um modelo de Embeddings estão selecionados e carregados na aba "Local Server". |
+| Aplicativo falha ao processar PDFs. | Não há PDFs na pasta `documents/`. | Adicione arquivos PDF ao diretório `documents/` e reinicie o `app.bat`. |
 | A IA dá respostas genéricas. | A recuperação não encontrou contexto relevante. | Reformule sua pergunta para usar palavras-chave que possam estar nos PDFs. |
 
 ## Licença
 
 Este projeto está licenciado sob a **Licença Internacional Creative Commons Attribution-NonCommercial-ShareAlike 4.0** (CC BY-NC-SA 4.0). Isso significa que você é livre para compartilhar e adaptar o material para fins não comerciais, desde que dê o crédito apropriado e licencie quaisquer novas criações sob os mesmos termos.
 
-Veja o arquivo [LICENSE](LICENSE.md) para detalhes completos.
-
-## Agradecimentos
-
-- **[LM Studio](https://lmstudio.ai/)**: Por fornecer uma maneira incrivelmente fácil de executar LLMs locais e modelos de embeddings.
-- **[FastAPI](https://fastapi.tiangolo.com/)**: Pela estrutura web moderna e de alto desempenho.
-- **[Scikit-learn](https://scikit-learn.org/)**: Pela funcionalidade de busca vetorial simples e eficaz.
+Consulte o arquivo [LICENSE](LICENSE.md) para obter detalhes completos.
